@@ -48,7 +48,7 @@ const mongoPassword = process.env.MONGO_PASSWORD;
 
 
 mongoose.connect(`mongodb+srv://${mongoUser}:${mongoPassword}@apiclster.wyusev1.mongodb.net/suape_app?retryWrites=true&w=majority`).then(
-    console.log("Seja Bem Vindo ao Suape App API!"),
+    console.info("Seja Bem Vindo ao Suape App API! Entre neste endereço: http://localhost:4000"),
     // Configurando a porta.
     app.listen(process.env.PORT ||4000)
 ).catch((err)=>{
