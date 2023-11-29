@@ -29,8 +29,6 @@ cloudinary.config({
 
   }
 
-  uploadCloudinary(String.raw`C:\Users\dayvi\Downloads\app-suape\app-suape\app-suape\icones\Mercado.png`, "mercado_logo")
-  
   
     
 
