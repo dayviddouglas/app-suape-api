@@ -62,6 +62,6 @@ app.use('/login', loginRotas)
 const bannerRotas = require('./rotas/Bannerrotas');
 app.use('/banner', bannerRotas)
 
-const categoriaRotas = require('./rotas/Categoriarotas');
-app.use('/categoria', categoriaRotas)
+const EstabelecimentoRotas = require('./rotas/Estabelecimentorotas');
+app.use('/estabelecimento', EstabelecimentoRotas)
 

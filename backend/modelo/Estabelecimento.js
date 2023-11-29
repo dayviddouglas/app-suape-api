@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 
 // Criando a camada de modelo.
-const Categoria = mongoose.model('Categoria', {
+const Estabelecimento = mongoose.model('Estabelecimento', {
     tipo: String,
     nome: String,
     telefone: String,
@@ -14,4 +14,4 @@ const Categoria = mongoose.model('Categoria', {
 });
 
 
-module.exports = Categoria;
+module.exports = Estabelecimento;

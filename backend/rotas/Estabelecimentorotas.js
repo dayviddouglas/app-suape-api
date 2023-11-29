@@ -1,10 +1,8 @@
 
 const cloudinary = require('cloudinary').v2
-const Categoria = require('../modelo/Categoria')
+const Estabelecimento = require('../modelo/Estabelecimento')
 
 const rotas = require('express').Router()
-
-var alertImport = require('alert');
 
 require('dotenv').config()
         
@@ -50,8 +48,8 @@ rotas.post('/', async (req, res)=>{
     
     try{
         
-       await Categoria.create(categ)
-        res.status(201).json({message: "Categoria criada com sucesso!"})
+       await Estabelecimento.create(categ)
+        res.status(201).json({message: "Estabelecimento criado com sucesso!"})
     }catch (err){
         res.status(404).json({error:err})
     }
@@ -61,7 +59,7 @@ rotas.get( '/', async (req,res)=>{
 
     try{
 
-        res.status(200).json(await Categoria.find())
+        res.status(200).json(await Estabelecimento.find())
 
     }catch (err){
         console.log({erro: err})
@@ -76,7 +74,7 @@ rotas.get('/:tipo', async (req, res)=>{
 
     const tipoUser = req.params.tipo
     try{
-        const tipo = await Categoria.find({tipo:tipoUser})
+        const tipo = await Estabelecimento.find({tipo:tipoUser})
         res.status(200).json(tipo)
 
     }catch(err){
@@ -99,7 +97,7 @@ rotas.patch('/:id', async(req, res)=>{
    }
 
    try{
-       const elementoAtualizado = await Categoria.updateOne({_id:id}, elemento)
+       const elementoAtualizado = await Estabelecimento.updateOne({_id:id}, elemento)
        res.status(200).json({sucesso: "Elemento atualizado com sucesso!"})
 
    }catch (err){
@@ -111,7 +109,7 @@ rotas.get('/1/:id', async (req, res)=>{
 
     const idUser = req.params.id
     try{
-        const categ = await Categoria.findOne({_id:idUser})
+        const categ = await Estabelecimento.findOne({_id:idUser})
         res.status(200).json(categ)
 
     }catch(err){
@@ -126,7 +124,7 @@ rotas.delete('/:id', async(req, res)=>{
     const id = req.params.id
     
     try {
-        await Categoria.deleteOne({_id:id})
+        await Estabelecimento.deleteOne({_id:id})
         res.status(200).json({sucesso: "Elemento deletado com sucesso!"})
     } catch (err) {
         res.status(400).json(err)
@@ -135,7 +133,7 @@ rotas.delete('/:id', async(req, res)=>{
 
 rotas.delete('/', async (req,res)=>{
     try {
-      await Categoria.deleteMany()
+      await Estabelecimento.deleteMany()
       res.status(202).json({sucesso: "Todos os elementos foram deletados."})
     } catch (err) {
       res.status(404).json(err)
