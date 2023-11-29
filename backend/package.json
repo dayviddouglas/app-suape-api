@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "alert": "^6.0.1",
+    "cloudinary": "^1.41.0",
     "cors": "^2.8.5",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.3.1",
@@ -19,4 +21,3 @@
   "license": "ISC",
   "description": ""
 }
-

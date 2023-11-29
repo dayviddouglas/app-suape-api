@@ -1,15 +1,45 @@
+
+const cloudinary = require('cloudinary').v2
 const Categoria = require('../modelo/Categoria')
 
 const rotas = require('express').Router()
 
+var alertImport = require('alert');
 
+require('dotenv').config()
+        
+cloudinary.config({ 
+    cloud_name: process.env.CLOUD_NAME, 
+    api_key: process.env.API_KEY, 
+    api_secret: process.env.API_SECRET 
+  });
+
+
+  const uploadCloudinary = (urlImg, publicId)=>{
+     
+     cloudinary.uploader.upload(urlImg,
+     { public_id: publicId }, 
+     function(error, result) {
+       if (result) {
+           return (result.secure_url); 
+       } else {
+           console.error(error)
+       }    
+   });
+
+  }
+
+  uploadCloudinary(String.raw`C:\Users\dayvi\Downloads\app-suape\app-suape\app-suape\icones\Mercado.png`, "mercado_logo")
+  
+  
+    
 
 
 rotas.post('/', async (req, res)=>{
+     
 
     const {tipo, nome, telefone, endereco, logo, latitude, longetude, status}= req.body
 
-    
        
 
     if(!tipo && !nome && !telefone && !endereco && !status){
