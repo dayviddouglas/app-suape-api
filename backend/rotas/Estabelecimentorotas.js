@@ -1,34 +1,14 @@
+// const uploadCloudinary = require("../cloudinary/config")
 
-const cloudinary = require('cloudinary').v2
+
 const Estabelecimento = require('../modelo/Estabelecimento')
 
 const rotas = require('express').Router()
 
-require('dotenv').config()
-        
-cloudinary.config({ 
-    cloud_name: process.env.CLOUD_NAME, 
-    api_key: process.env.API_KEY, 
-    api_secret: process.env.API_SECRET 
-  });
+
+// uploadCloudinary("C:/Users/dayvi/Downloads/app-suape/app-suape/app-suape/icones/Restaurantes/EstLogo1.png", "thayse_estetica")
 
 
-  const uploadCloudinary = (urlImg, publicId)=>{
-     
-     cloudinary.uploader.upload(urlImg,
-     { public_id: publicId }, 
-     function(error, result) {
-       if (result) {
-           return (result.secure_url); 
-       } else {
-           console.error(error)
-       }    
-   });
-
-  }
-
-  
-    
 
 
 rotas.post('/', async (req, res)=>{
