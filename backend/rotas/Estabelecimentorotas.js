@@ -6,7 +6,7 @@ const Estabelecimento = require('../modelo/Estabelecimento')
 const rotas = require('express').Router()
 
 
-// uploadCloudinary("C:/Users/dayvi/Downloads/app-suape/app-suape/app-suape/icones/visa_logo.jpg", "visa_Logo")
+// uploadCloudinary("C:/Users/dayvi/Downloads/iloveimg-resized/VISA-logo.png", "visa_Logo800")
 
 
 
