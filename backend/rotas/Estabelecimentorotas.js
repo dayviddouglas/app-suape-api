@@ -71,7 +71,8 @@ rotas.patch('/:id', async(req, res)=>{
    const {tipo, nome,cnpj, telefone, endereco, logo,horaIni,horaFim,fechado, latitude, longetude, descricao,eloLogo,
     masterCardLogo,visaLogo,status} = req.body
 
-    if(!tipo || !nome || !cnpj || !horaIni || !horaFim || !fechado || !descricao || !status){
+    if(!tipo || !nome || !cnpj || !horaIni || !horaFim || 
+        !fechado || !descricao || !telefone || !endereco || !status){
         res.status(400).json({campos: "Os Campos obrigatórios são: tipo, nome, cnpj, horaIni,"+
         "horaFim, fechado, descrição, telefone,endereço e status."})
      }
