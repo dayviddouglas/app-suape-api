@@ -14,16 +14,17 @@ const rotas = require('express').Router()
 rotas.post('/', async (req, res)=>{
      
 
-    const {tipo, nome, telefone, endereco, logo, latitude, longetude, status}= req.body
+    const {tipo, nome, telefone, endereco, logo, latitude, longetude, descricao,eloLogo,
+         masterCardLogo,visaLogo,status}= req.body
 
        
 
-    if(!tipo && !nome && !telefone && !endereco && !status){
+    if(!tipo && !nome && !telefone && !endereco && !descricao  && !status){
        res.status(400).json({campos: "Preencha todos campos..."})
     }
 
     const categ = {
-        tipo, nome, telefone, endereco, logo, latitude, longetude,status
+        tipo, nome, telefone, endereco, logo, latitude, longetude, descricao,eloLogo, masterCardLogo, visaLogo,status
     }
     
     try{
@@ -66,14 +67,14 @@ rotas.get('/:tipo', async (req, res)=>{
 rotas.patch('/:id', async(req, res)=>{
     const id = req.params.id
 
-   const {tipo, nome, telefone, endereco, logo, latitude, longetude,status} = req.body
+   const {tipo, nome, telefone, endereco, logo, latitude, longetude,descricao, eloLogo,masterCardLogo, visaLogo, status} = req.body
 
-    if(!tipo && !nome && !telefone && !endereco && !status){
+    if(!tipo && !nome && !telefone && !endereco && !descricao && !status){
      res.status(400).json({campos: "Preencha todos campos..."})
   }
 
    const elemento = {
-    tipo, nome, telefone, endereco, logo, latitude, longetude,status
+    tipo, nome, telefone, endereco, logo, latitude, longetude, descricao,eloLogo,masterCardLogo,visaLogo,status
    }
 
    try{

@@ -10,6 +10,9 @@ const Estabelecimento = mongoose.model('Estabelecimento', {
     logo: String,
     latitude: String,
     longetude: String,
+    eloLogo: String,
+    masterCardLogo: String,
+    visaLogo: String,
     status: Boolean,
 });
 
