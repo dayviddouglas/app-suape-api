@@ -17,6 +17,7 @@ const Estabelecimento = mongoose.model('Estabelecimento', {
     horaIni: String,
     horaFim: String,
     fechado: String,
+    descricao: String,
     status: Boolean,
 });
 
