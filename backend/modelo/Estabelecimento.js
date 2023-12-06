@@ -13,6 +13,10 @@ const Estabelecimento = mongoose.model('Estabelecimento', {
     eloLogo: String,
     masterCardLogo: String,
     visaLogo: String,
+    cnpj: String,
+    horaIni: String,
+    horaFim: String,
+    fechado: String,
     status: Boolean,
 });
 

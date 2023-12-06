@@ -1,4 +1,4 @@
-// const uploadCloudinary = require("../cloudinary/config")
+const uploadCloudinary = require("../cloudinary/config")
 
 
 const Estabelecimento = require('../modelo/Estabelecimento')
@@ -6,25 +6,26 @@ const Estabelecimento = require('../modelo/Estabelecimento')
 const rotas = require('express').Router()
 
 
-// uploadCloudinary("C:/Users/dayvi/Downloads/app-suape/app-suape/app-suape/icones/Restaurantes/EstLogo1.png", "thayse_estetica")
-
+// uploadCloudinary("C:/Users/dayvi/Downloads/app-suape/app-suape/app-suape/icones/visa_logo.jpg", "visa_Logo")
 
 
 
 rotas.post('/', async (req, res)=>{
      
-
-    const {tipo, nome, telefone, endereco, logo, latitude, longetude, descricao,eloLogo,
+ 
+    const {tipo, nome,cnpj, telefone, endereco, logo,horaIni,horaFim,fechado, latitude, longetude, descricao,eloLogo,
          masterCardLogo,visaLogo,status}= req.body
 
-       
-
-    if(!tipo && !nome && !telefone && !endereco && !descricao  && !status){
-       res.status(400).json({campos: "Preencha todos campos..."})
+    if(!tipo || !nome || !cnpj || !horaIni || !horaFim || 
+        !fechado || !descricao || !telefone || !endereco || !status){
+       res.status(400).json({campos: "Os Campos obrigatórios são: tipo, nome, cnpj, horaIni,"+
+        "horaFim, fechado, descrição, telefone,endereço e status."
+       })
     }
 
     const categ = {
-        tipo, nome, telefone, endereco, logo, latitude, longetude, descricao,eloLogo, masterCardLogo, visaLogo,status
+        tipo, nome,cnpj, telefone, endereco, logo,horaIni,horaFim,fechado,latitude,
+         longetude, descricao,eloLogo, masterCardLogo, visaLogo,status
     }
     
     try{
@@ -67,14 +68,17 @@ rotas.get('/:tipo', async (req, res)=>{
 rotas.patch('/:id', async(req, res)=>{
     const id = req.params.id
 
-   const {tipo, nome, telefone, endereco, logo, latitude, longetude,descricao, eloLogo,masterCardLogo, visaLogo, status} = req.body
+   const {tipo, nome,cnpj, telefone, endereco, logo,horaIni,horaFim,fechado, latitude, longetude, descricao,eloLogo,
+    masterCardLogo,visaLogo,status} = req.body
 
-    if(!tipo && !nome && !telefone && !endereco && !descricao && !status){
-     res.status(400).json({campos: "Preencha todos campos..."})
-  }
+    if(!tipo || !nome || !cnpj || !horaIni || !horaFim || !fechado || !descricao || !status){
+        res.status(400).json({campos: "Os Campos obrigatórios são: tipo, nome, cnpj, horaIni,"+
+        "horaFim, fechado, descrição, telefone,endereço e status."})
+     }
 
    const elemento = {
-    tipo, nome, telefone, endereco, logo, latitude, longetude, descricao,eloLogo,masterCardLogo,visaLogo,status
+    tipo, nome,cnpj, telefone, endereco, logo,horaIni,horaFim,fechado,latitude,
+         longetude, descricao,eloLogo, masterCardLogo, visaLogo,status
    }
 
    try{
