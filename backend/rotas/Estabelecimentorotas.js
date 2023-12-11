@@ -6,25 +6,24 @@ const Estabelecimento = require('../modelo/Estabelecimento')
 const rotas = require('express').Router()
 
 
-// uploadCloudinary("C:/Users/dayvi/Downloads/iloveimg-resized/VISA-logo.png", "visa_Logo800")
+// uploadCloudinary("C:/Users/dayvi/Downloads/app-suape/app-suape/app-suape/icones/elologo400x200.png", "elologo400x200")
+
 
 
 
 rotas.post('/', async (req, res)=>{
-     
- 
-    const {tipo, nome,cnpj, telefone, endereco, logo,horaIni,horaFim,fechado, latitude, longetude, descricao,eloLogo,
+
+    
+    const {tipo, nome,cnpj, telefone, endereco, segunda, terca, quarta,quinta,sexta,sabado,domingo, logo, latitude, longetude, descricao,eloLogo,
          masterCardLogo,visaLogo,status}= req.body
 
-    if(!tipo || !nome || !cnpj || !horaIni || !horaFim || 
-        !fechado || !descricao || !telefone || !endereco || !status){
-       res.status(400).json({campos: "Os Campos obrigatórios são: tipo, nome, cnpj, horaIni,"+
-        "horaFim, fechado, descrição, telefone,endereço e status."
+    if(!tipo || !nome || !cnpj || !descricao || !telefone || !endereco || !status){
+       res.status(400).json({campos: "Os Campos obrigatórios são: tipo, nome, cnpj,"+ "descrição, telefone,endereço e status."
        })
     }
 
     const categ = {
-        tipo, nome,cnpj, telefone, endereco, logo,horaIni,horaFim,fechado,latitude,
+        tipo, nome,cnpj, telefone, endereco, logo,latitude,segunda, terca, quarta,quinta,sexta,sabado,domingo,
          longetude, descricao,eloLogo, masterCardLogo, visaLogo,status
     }
     
@@ -68,17 +67,15 @@ rotas.get('/:tipo', async (req, res)=>{
 rotas.patch('/:id', async(req, res)=>{
     const id = req.params.id
 
-   const {tipo, nome,cnpj, telefone, endereco, logo,horaIni,horaFim,fechado, latitude, longetude, descricao,eloLogo,
-    masterCardLogo,visaLogo,status} = req.body
+    const {tipo, nome,cnpj, telefone, endereco, segunda, terca, quarta,quinta,sexta,sabado,domingo, logo, latitude, longetude, descricao,eloLogo,
+        masterCardLogo,visaLogo,status}= req.body
 
-    if(!tipo || !nome || !cnpj || !horaIni || !horaFim || 
-        !fechado || !descricao || !telefone || !endereco || !status){
-        res.status(400).json({campos: "Os Campos obrigatórios são: tipo, nome, cnpj, horaIni,"+
-        "horaFim, fechado, descrição, telefone,endereço e status."})
+    if(!tipo || !nome || !cnpj || !descricao || !telefone || !endereco || !status){
+        res.status(400).json({campos: "Os Campos obrigatórios são: tipo, nome, cnpj,"+ "descrição, telefone,endereço e status."
+        })
      }
-
    const elemento = {
-    tipo, nome,cnpj, telefone, endereco, logo,horaIni,horaFim,fechado,latitude,
+    tipo, nome,cnpj, telefone, endereco, logo,latitude,segunda, terca, quarta,quinta,sexta,sabado,domingo,
          longetude, descricao,eloLogo, masterCardLogo, visaLogo,status
    }
 

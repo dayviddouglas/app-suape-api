@@ -14,11 +14,15 @@ const Estabelecimento = mongoose.model('Estabelecimento', {
     masterCardLogo: String,
     visaLogo: String,
     cnpj: String,
-    horaIni: String,
-    horaFim: String,
-    fechado: String,
     descricao: String,
     status: Boolean,
+    segunda: String,
+    terca: String,
+    quarta: String,
+    quinta: String,
+    sexta: String,
+    sabado: String,
+    domingo: String
 });
 
 
