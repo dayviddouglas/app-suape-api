@@ -8,16 +8,16 @@ const crypto = require('crypto');
 
 rotas.post('/', async (req, res)=>{
 
-    var {cpf, senha, status}= req.body
+    var {nome,cpf, foto, senha, status, email, telefone}= req.body
 
      senha = crypto.createHash('sha256').update(senha).digest('hex')
      
-    if(!cpf && !senha){
-       res.status(400).json({senha: "A senha é obrigatória!"})
+    if(!cpf || !senha || !nome || !status || !email || !telefone){
+       res.status(400).json({campos: "Preencha todos os campos..."})
     }
 
     const login = {
-        cpf, senha, status
+        cpf, senha, status, nome, foto, email, telefone
     }
 
     try{
@@ -60,10 +60,14 @@ rotas.get('/:cpf', async (req, res)=>{
 rotas.patch('/:id', async(req, res)=>{
      const id = req.params.id
  
-    const {cpf, senha, status} = req.body
+     const {nome,cpf, foto, senha, status, email, telefone}= req.body
+
+     if(!cpf || !senha || !nome || !status || !email || !telefone){
+        res.status(400).json({campos: "Preencha todos os campos..."})
+     }
     
-    const login = {
-        cpf, senha, status
+     const login = {
+        cpf, senha, status, nome, foto, email, telefone
     }
 
     try{

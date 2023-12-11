@@ -2,6 +2,13 @@ const Banner = require('../modelo/Banner')
 
 const rotas = require('express').Router()
 
+
+const uploadCloudinary = require("../cloudinary/config")
+
+// uploadCloudinary("C:/Users/dayvi/Downloads/app-suape/app-suape/app-suape/icones/Abastecimento.png", "abastecimento_banner")
+
+
+
 rotas.post('/', async (req, res)=>{
 
     const {titulo, banner}= req.body

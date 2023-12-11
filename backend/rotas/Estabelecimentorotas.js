@@ -6,7 +6,7 @@ const Estabelecimento = require('../modelo/Estabelecimento')
 const rotas = require('express').Router()
 
 
-// uploadCloudinary("C:/Users/dayvi/Downloads/app-suape/app-suape/app-suape/icones/elologo400x200.png", "elologo400x200")
+// uploadCloudinary("C:/Users/dayvi/Downloads/app-suape/app-suape/app-suape/icones/Restaurantes/AbsLogo2.jpg", "posto_petrobas_logo")
 
 
 
