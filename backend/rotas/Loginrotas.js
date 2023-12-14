@@ -5,12 +5,17 @@ const rotas = require('express').Router()
 const crypto = require('crypto');
 
 
+const uploadCloudinary = require("../cloudinary/config")
+
+
+// uploadCloudinary("C:/Users/dayvi/Downloads/app-suape/app-suape/app-suape/icones/funcionarios/photo-1564564295391-7f24f26f568b.png" ,"camila_maria_josefina")
+
 
 rotas.post('/', async (req, res)=>{
 
     var {nome,cpf, foto, senha, status, email, telefone}= req.body
 
-     senha = crypto.createHash('sha256').update(senha).digest('hex')
+    //  senha = crypto.createHash('sha256').update(senha).digest('hex')
      
     if(!cpf || !senha || !nome || !status || !email || !telefone){
        res.status(400).json({campos: "Preencha todos os campos..."})
@@ -62,7 +67,7 @@ rotas.patch('/:id', async(req, res)=>{
  
      var {nome,cpf, foto, senha, status, email, telefone}= req.body
 
-     senha = crypto.createHash('sha256').update(senha).digest('hex')
+    //  senha = crypto.createHash('sha256').update(senha).digest('hex')
 
      if(!cpf || !senha || !nome || !status || !email || !telefone){
         res.status(400).json({campos: "Preencha todos os campos..."})
