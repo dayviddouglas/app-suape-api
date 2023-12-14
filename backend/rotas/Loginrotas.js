@@ -2,7 +2,7 @@ const Login = require('../modelo/Login')
 
 const rotas = require('express').Router()
 
-const crypto = require('crypto');
+// const crypto = require('crypto');
 
 
 const uploadCloudinary = require("../cloudinary/config")
@@ -64,14 +64,16 @@ rotas.get('/:cpf', async (req, res)=>{
 
 rotas.patch('/:id', async(req, res)=>{
      const id = req.params.id
- 
-     var {nome,cpf, foto, senha, status, email, telefone}= req.body
+     
+     var {nome,cpf, foto, senha, status, emailAtual, telefoneAtual}= req.body
 
     //  senha = crypto.createHash('sha256').update(senha).digest('hex')
 
-     if(!cpf || !senha || !nome || !status || !email || !telefone){
-        res.status(400).json({campos: "Preencha todos os campos..."})
-     }
+    //  if(!cpf || !senha || !nome || !status || !email || !telefone){
+    //     res.status(400).json({campos: "Preencha todos os campos..."})
+    //  }
+
+    var email = emailAtual, telefone = telefoneAtual
     
      const login = {
         cpf, senha, status, nome, foto, email, telefone
