@@ -8,7 +8,7 @@ const crypto = require('crypto');
 const uploadCloudinary = require("../cloudinary/config")
 
 
-// uploadCloudinary("C:/Users/dayvi/Downloads/app-suape/app-suape/app-suape/icones/funcionarios/photo-1564564295391-7f24f26f568b.png" ,"camila_maria_josefina")
+// uploadCloudinary("C:/Users/dayvi/Downloads/app-suape/app-suape/app-suape/icones/funcionarios/perfil_sem_foto.png" ,"perfil sem foto")
 
 
 rotas.post('/', async (req, res)=>{
@@ -89,6 +89,29 @@ rotas.patch('/:id', async(req, res)=>{
     
 })
 
+rotas.put('/updateAll/:id', async(req, res)=>{
+    const id = req.params.id
+  
+    var {nome,cpf, foto, senha, status, email, telefone}= req.body
+
+    senha = crypto.createHash('sha256').update(senha).digest('hex')
+
+    if(!nome || !cpf || !foto || !senha  || !status || !email || !telefone){
+      res.status(400).json({campos: "Preencha todos campos..."})
+    }
+    
+    const updateLogin = {
+        nome, cpf, foto,senha,status, email, telefone
+    }
+    try{
+       const loginAtualizado = await Login.updateOne({_id:id},updateLogin)
+       res.status(200).json({sucesso: "Login Atualizado com sucesso!"})
+    }catch(err){
+       res.status(404).json({error: err})
+    }
+
+})
+
 rotas.delete('/:id', async(req, res)=>{
     const id = req.params.id
     
@@ -109,6 +132,8 @@ rotas.delete('/', async (req,res)=>{
     res.status(404).json(err)
   }
 }
+
+
 
 )
 
