@@ -66,8 +66,7 @@ rotas.patch('/:id', async(req, res)=>{
      const id = req.params.id
      
      var {nome,cpf, foto, senha, status, emailAtual, telefoneAtual}= req.body
-
-     senha = crypto.createHash('sha256').update(senha).digest('hex')
+     
 
      if(!cpf || !senha || !nome || !status || !emailAtual || !telefoneAtual){
         res.status(400).json({campos: "Preencha todos os campos..."})
