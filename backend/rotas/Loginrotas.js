@@ -102,16 +102,17 @@ rotas.put('/updateAll/:id', async(req, res)=>{
 
     senha = crypto.createHash('sha256').update(senha).digest('hex')
 
-    if(!nome || !cpf || !foto || !senha  || !status || !email || !telefone){
-      res.status(400).json({campos: "Preencha todos campos..."})
-    }
-    
     const updateLogin = {
         nome, cpf, foto,senha,status, email, telefone
     }
     try{
-       const loginAtualizado = await Login.updateOne({_id:id},updateLogin)
-       res.status(200).json({sucesso: "Login Atualizado com sucesso!"})
+        if(!nome || !cpf || !foto || !senha  || !status || !email || !telefone){
+            res.status(400).json({campos: "Preencha todos campos..."})
+          }else{
+            const loginAtualizado = await Login.updateOne({_id:id},updateLogin)
+            res.status(200).json({sucesso: "Login Atualizado com sucesso!"})
+          }
+      
     }catch(err){
        res.status(404).json({error: err})
     }
