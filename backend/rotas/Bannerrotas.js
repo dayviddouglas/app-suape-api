@@ -14,9 +14,7 @@ rotas.post('/', async (req, res)=>{
     const {titulo, banner}= req.body
 
     
-    if(!titulo){
-       res.status(400).json({titulo: "o título é obrigatório!"})
-    }
+    
 
     const bann = {
         titulo, banner
@@ -24,9 +22,14 @@ rotas.post('/', async (req, res)=>{
 
     
     try{
+        if(!titulo){
+            res.status(400).json({titulo: "o título é obrigatório!"})
+         }else{
+            await Banner.create(bann)
+            res.status(201).json({message: "Banner criado com sucesso!"})
+         }
         
-        await Banner.create(bann)
-        res.status(201).json({message: "Banner criado com sucesso!"})
+       
     }catch (err){
         res.status(404).json({error:err})
     }
