@@ -17,20 +17,25 @@ rotas.post('/', async (req, res)=>{
 
      senha = crypto.createHash('sha256').update(senha).digest('hex')
      
-    if(!cpf || !senha || !nome || !status || !email || !telefone){
-       res.status(400).json({campos: "Preencha todos os campos..."})
-    }
+   
 
     const login = {
         cpf, senha, status, nome, foto, email, telefone
     }
 
     try{
+        if(!cpf || !senha || !nome || !status || !email || !telefone){
+            res.status(400).json({campos: "Preencha todos os campos..."})
+         }else{
+            await Login.create(login)
+            res.status(201).json({message: "Login Criado com sucesso!"})
+         }
         
-        await Login.create(login)
-        res.status(201).json({message: "Login Criado com sucesso!"})
-    }catch (err){
+        
+    }catch (err){  
         res.status(404).json({error:err})
+        
+        
     }
 })
 
