@@ -58,8 +58,12 @@ rotas.get('/:cpf', async (req, res)=>{
     const cpfUser = req.params.cpf
     try{
         const login = await Login.findOne({cpf:cpfUser})
-        res.status(200).json(login)
-
+        if(login==null){
+            res.status(404).json({message: "Login não encontrado..."})
+        }else{
+            res.status(200).json(login)
+        }
+        
     }catch(err){
         res.status(404).json({error: err})
 
