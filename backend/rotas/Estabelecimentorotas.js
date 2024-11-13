@@ -72,18 +72,20 @@ rotas.patch('/:id', async(req, res)=>{
     const {tipo, nome,cnpj, telefone, endereco, segunda, terca, quarta,quinta,sexta,sabado,domingo, logo, latitude, longetude, descricao,eloLogo,
         masterCardLogo,visaLogo,status}= req.body
 
-    if(!tipo || !nome || !cnpj || !descricao || !telefone || !endereco || !status){
-        res.status(400).json({campos: "Os Campos obrigatórios são: tipo, nome, cnpj,"+ "descrição, telefone,endereço e status."
-        })
-     }
    const elemento = {
     tipo, nome,cnpj, telefone, endereco, logo,latitude,segunda, terca, quarta,quinta,sexta,sabado,domingo,
          longetude, descricao,eloLogo, masterCardLogo, visaLogo,status
    }
 
    try{
-       const elementoAtualizado = await Estabelecimento.updateOne({_id:id}, elemento)
+    if(!tipo || !nome || !cnpj || !descricao || !telefone || !endereco || !status){
+        res.status(400).json({campos: "Os Campos obrigatórios são: tipo, nome, cnpj,"+ "descrição, telefone,endereço e status."
+        })
+     }else{
+        const elementoAtualizado = await Estabelecimento.updateOne({_id:id}, elemento)
        res.status(200).json({sucesso: "Elemento atualizado com sucesso!"})
+     }
+       
 
    }catch (err){
         res.status(404).json({erro: err})
