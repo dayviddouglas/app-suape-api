@@ -12,10 +12,7 @@ const uploadCloudinary = require("../cloudinary/config")
 rotas.post('/', async (req, res)=>{
 
     const {titulo, banner}= req.body
-
     
-    
-
     const bann = {
         titulo, banner
     }
@@ -44,7 +41,7 @@ rotas.get( '/', async (req,res)=>{
         res.status(200).json(await Banner.find())
 
     }catch (err){
-        console.log({erro: err})
+        
         res.status(404).json({erro: err})
 
     }
