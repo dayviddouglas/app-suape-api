@@ -17,10 +17,6 @@ rotas.post('/', async (req, res)=>{
     const {tipo, nome,cnpj, telefone, endereco, segunda, terca, quarta,quinta,sexta,sabado,domingo, logo, latitude, longetude, descricao,eloLogo,
          masterCardLogo,visaLogo,status}= req.body
 
-    if(!tipo || !nome || !cnpj || !descricao || !telefone || !endereco || !status){
-       res.status(400).json({campos: "Os Campos obrigatórios são: tipo, nome, cnpj,"+ "descrição, telefone,endereço e status."
-       })
-    }
 
     const categ = {
         tipo, nome,cnpj, telefone, endereco, logo,latitude,segunda, terca, quarta,quinta,sexta,sabado,domingo,
@@ -29,8 +25,14 @@ rotas.post('/', async (req, res)=>{
     
     try{
         
-       await Estabelecimento.create(categ)
+    if(!tipo || !nome || !cnpj || !descricao || !telefone || !endereco || !status){
+        res.status(400).json({campos: "Os Campos obrigatórios são: tipo, nome, cnpj,"+ "descrição, telefone,endereço e status."
+        })
+     }else{
+        await Estabelecimento.create(categ)
         res.status(201).json({message: "Estabelecimento criado com sucesso!"})
+     }
+       
     }catch (err){
         res.status(404).json({error:err})
     }
