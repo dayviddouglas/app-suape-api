@@ -72,11 +72,6 @@ rotas.patch('/:id', async(req, res)=>{
      
      var {nome,cpf, foto, senha, status, emailAtual, telefoneAtual}= req.body
      
-
-     if(!cpf || !senha || !nome || !status || !emailAtual || !telefoneAtual){
-        res.status(400).json({campos: "Preencha todos os campos..."})
-     }
-
     var email = emailAtual, telefone = telefoneAtual
     
      const login = {
@@ -84,8 +79,14 @@ rotas.patch('/:id', async(req, res)=>{
     }
 
     try{
-        const loginAtualizado = await Login.updateOne({_id:id}, login)
-        res.status(200).json({sucesso: "Login atualizado com sucesso!"})
+
+        if(!cpf || !senha || !nome || !status || !emailAtual || !telefoneAtual){
+            res.status(400).json({campos: "Preencha todos os campos..."})
+         }else{
+            const loginAtualizado = await Login.updateOne({_id:id}, login)
+            res.status(200).json({sucesso: "Login atualizado com sucesso!"})
+         }
+       
 
     }catch (err){
          res.status(404).json({erro: err})
